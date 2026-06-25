@@ -20,16 +20,31 @@ def view_all_tasks():
     if not tasks:
         print("No tasks available.")
         return
-    # Shows a list of names and deadlines as requested
     for task in tasks:
         print(f"📌 Name: {task['name']} | 📅 Deadline: {task['deadline']}")
+
+def view_individual_task():
+    print("\n--- View Individual Task ---")
+    if not tasks:
+        print("No tasks available.")
+        return
+    
+    search_name = input("Enter the task name to view details: ")
+    for task in tasks:
+        if task['name'].lower() == search_name.lower():
+            print(f"\n📌 Name: {task['name']}")
+            print(f"📝 Description: {task['description']}")
+            print(f"📅 Deadline: {task['deadline']}")
+            return
+    print("❌ Task not found.")
 
 if __name__ == "__main__":
     while True:
         print("\n=== Task Manager ===")
         print("1. Add Task")
         print("2. View All Tasks")
-        print("3. Exit")
+        print("3. View Individual Task")
+        print("4. Exit")
         
         choice = input("Choose an option: ")
         if choice == "1":
@@ -37,6 +52,8 @@ if __name__ == "__main__":
         elif choice == "2":
             view_all_tasks()
         elif choice == "3":
+            view_individual_task()
+        elif choice == "4":
             print("Goodbye!")
             break
         else:
